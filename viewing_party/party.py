@@ -42,19 +42,75 @@ movie = {
 }
 print(watch_movie(user_data, movie))
 
+
 # -----------------------------------------
 # ------------- WAVE 2 --------------------
 # -----------------------------------------
+
+def get_watched_avg_rating(user_data):
+    total = 0
+    count = 0
+    if not user_data["watched"]:
+        return 0
+    for data in user_data["watched"]:
+        total += data["rating"]
+        count += 1
+    average = total / count
+
+    return average
+
+
+def get_most_watched_genre(user_data):
+    genres = []
+    if not user_data["watched"]:
+        return None
+    for data in user_data["watched"]:
+        genres.append(data["genre"])
+    top_genre = ""
+    top_count = 0
+    for genre in genres:
+        genre_count = genres.count(genre)
+        if (genre_count > top_count):
+            top_count = genre_count
+            top_genre = genre
+    return top_genre
 
 
 # -----------------------------------------
 # ------------- WAVE 3 --------------------
 # -----------------------------------------
+def get_unique_watched(user_data):
+    if not user_data["watched"]:
+        return []
+    friends_watched = []
+    user_unique_movies = []
+    for friend in user_data["friends"]:
+        for movie in friend["watched"]:
+            friends_watched.append(movie["title"])
+    for data in user_data["watched"]:
+        if data["title"] not in friends_watched:
+            user_unique_movies.append(data)
+    return user_unique_movies
+
+
+def get_friends_unique_watched(user_data):
+    user_watched = user_data["watched"]
+    friends_unique_movie = []
+    for friend in user_data["friends"]:
+        for data in friend["watched"]:
+            if data not in user_watched and data not in friends_unique_movie:
+                friends_unique_movie.append(data)
+    return friends_unique_movie
 
 
 # -----------------------------------------
 # ------------- WAVE 4 --------------------
+
 # -----------------------------------------
+# def get_available_recs(user_data):
+#     recommendations = []
+
+#     return recommendations
 
 # -----------------------------------------
 # ------------- WAVE 5 --------------------
