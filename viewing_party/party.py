@@ -114,12 +114,7 @@ def get_friends_unique_watched(user_data):
 
 # -----------------------------------------
 def get_available_recs(user_data):
-    # subscriptions - what user has
-    # host - where the movie is hosted
-    #  list of movies that friends have watch and user has not
-    # movies must be in host the user has
     recommendations = []
-    print(user_data["subscriptions"])
     friends_unique = get_friends_unique_watched(user_data)
     for data in friends_unique:
         if data["host"] in user_data["subscriptions"]:
