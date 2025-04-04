@@ -64,7 +64,7 @@ def get_most_watched_genre(user_data):
     for movie in user_data["watched"]:
         genre = movie["genre"]
 
-        if genre in genre_counts:  # for lines 74-77, can do this instead: genre_counts[genre] = genre_counts.get(genre, 0) + 1
+        if genre in genre_counts:  # can maybe do this instead: genre_counts[genre] = genre_counts.get(genre, 0) + 1
             genre_counts[genre] += 1
         else:
             genre_counts[genre] = 1
